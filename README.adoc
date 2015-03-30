@@ -8,18 +8,17 @@ projects: [spring-cloud]
 :icons: font
 :source-highlighter: prettify
 
-This guide walks you through the process setting up Lattice and then deploying a Spring Boot application to it.
+This guide walks you through the process setting up http://lattice.cf[Lattice] and then deploying a Spring Boot application to it.
 
 == What you'll build
 
-Blah blah
+Lattice is a cloud solution small enough to run on your laptop. By giving up features like multi-tenancy, you can build cloud apps rapidly, and later target them for things like Pivotal CF. In this guide, you'll setup Lattice and then deploy a service to it.
 
 == What you'll need
 
 :java_version: 1.7
 :java_version: 1.7
 include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/prereq_editor_jdk_buildtools.adoc[]
-
 
 include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/how_to_complete_this_guide.adoc[]
 
@@ -28,7 +27,69 @@ include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/
 [[initial]]
 == Set up Lattice
 
-Lattice is blah blah
+Lattice is Cloud Foundry with certain features, not critical for a local installation, removed. The following http://lattice.cf/docs/getting-started.html[getting started] steps are all you need to get Lattice going:
+
+. Visit https://www.virtualbox.org/wiki/Downloads[VirtualBox's download site] and pick the version for your machine. Download and install. Don't worry about actually running it.
+. Visit https://www.vagrantup.com/downloads.html[Vagrant's download site] and pick the version for your machine. Download and install.
+. You need http://git-scm.com/[git], the DVCS tool. Options include "brew install git" or visiting the http://git-scm.com/downloads[download page]. After installing ,verify you can run "git" from the command line.
+. Create a folder to check out Lattice, e.g. `cd ~/src`
+. Check out a copy of Lattice by typing `git clone https://github.com/cloudfoundry-incubator/lattice.git`
+. `cd lattice`
+. `git checkout v0.2.1`
+. `vagrant up --provider lattice`
+. Go get a coffee. This will take some time as it downloads a Lattice Docker image into your VirtualBox setup.
+. When Lattice finishes this step, it should print out a target address like this: *192.168.11.11.xip.io*. Note it for later usage.
+
+
+NOTE: Vagrant also has support for other VMs like VMware Fusion. It requires not only a commercial copy of VMware Fusion, but a copy of the http://www.vagrantup.com/vmware]Vagrant/VMware Fusion plugin] as well.
+
+== Set up Lattice CLI
+
+With Lattice installed and running, you now need a copy of the Lattice CLI (ltc).
+
+Using Mac Homebrew? Try this:
+
+. `wget https://lattice.s3.amazonaws.com/releases/v0.2.1/darwin-amd64/ltc -O /usr/local/bin/ltc`
+. ` chmod 755 /usr/local/bin/ltc`
+
+If not, try this instead:
+
+. `mkdir -p $HOME/bin`
+. `wget https://lattice.s3.amazonaws.com/releases/v0.2.1/darwin-amd64/ltc -O $HOME/bin/ltc`
+. `chmod 755 $HOME/bin/ltc`
+. Add `$HOME/bin` to your *PATH* inside your .bash_profile (or similar PATh configuration file).
+
+Verify *ltc* is setup with this:
+
+----
+$ ltc --version
+----
+
+== Install demo web app in Lattice
+
+With everything setup, the Lattice team has a sample app ready to deploy into your own cloud.
+
+. Point ltc at your Lattice setup by typing: `ltc target <lattice address>`
+. Install the demo web app by typing: `ltc create lattice-app cloudfoundry/lattice-app`
+* Scale the web app up to three instances by typing: `ltc scale 3`
+
+NOTE: *lattice-app* can be anything you wish. *cloudfoundry/lattice-app* is the name of the sample web app published to a Docker registry.
+
+You should see something like this:
+
+----
+Starting App: lattice-app...
+lattice-app is now running.
+http://lattice-app.192.168.11.11.xip.io
+----
+
+Bonus commands to tinker with:
+
+* Tail the logs by typing `ltc logs lattice-app`
+* See all apps deployed on your Lattice by typing `ltc list`
+* See status by typing `ltc status lattice-app`
+* Visualize containers by typing `ltc visualize`
+* Crash the app and see it recover automatically by typing `lattice-app.192.168.11.11.xip.io/exit` into your browser's address bar.
 
 == Set up a Spring Boot app
 
