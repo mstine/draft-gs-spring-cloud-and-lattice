@@ -1,0 +1,44 @@
+---
+tags: [lattice,spring cloud]
+projects: [spring-cloud]
+---
+:spring_version: current
+:toc:
+:project_id: gs-lattice-spring-cloud
+:icons: font
+:source-highlighter: prettify
+
+This guide walks you through the process setting up Lattice and then deploying a Spring Boot application to it.
+
+== What you'll build
+
+Blah blah
+
+== What you'll need
+
+:java_version: 1.7
+:java_version: 1.7
+include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/prereq_editor_jdk_buildtools.adoc[]
+
+
+include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/how_to_complete_this_guide.adoc[]
+
+
+
+[[initial]]
+== Set up Lattice
+
+Lattice is blah blah
+
+== Set up a Spring Boot app
+
+More blah blah
+
+
+== Summary
+
+Congratulations! You've just setup a cloud on your laptop and run a Spring Boot app on it!
+
+
+
+

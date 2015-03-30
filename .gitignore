@@ -1,0 +1,13 @@
+# Operating System Files
+
+*.DS_Store
+Thumbs.db
+*.sw?
+.#*
+*#
+*~
+*.sublime-*
+
+tomcat*
+spring-shell.log
+README.html
