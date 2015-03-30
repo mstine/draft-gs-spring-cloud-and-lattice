@@ -91,9 +91,18 @@ Bonus commands to tinker with:
 * Visualize containers by typing `ltc visualize`
 * Crash the app and see it recover automatically by typing `lattice-app.192.168.11.11.xip.io/exit` into your browser's address bar.
 
-== Set up a Spring Boot app
+== Set up a Spring Cloud app
 
-More blah blah
+With Lattice set up and a sample web app installed, now you can install a Spring Cloud module that interacts with Lattice.
+
+. Go back to the folder where you cloned lattice (like `cd ~/src`).
+. Clone Spring Cloud Lattice by typing `git clone git@github.com:spring-cloud/spring-cloud-lattice.git`
+. `cd spring-cloud-lattice`
+. `mvn package`
+. `java -jar spring-cloud-lattice-sample/target/spring-cloud-lattice-sample-1.0.0.BUILD-SNAPSHOT.jar`
+. Visit localhost:8080 and verify you can see the demo web app. Refresh the browser multiple times to see it rotate.
+
+NOTE: Visit link:/gs/maven/ for more background regarding Apache Maven.
 
 
 == Summary
