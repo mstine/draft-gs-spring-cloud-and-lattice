@@ -100,9 +100,8 @@ With Lattice set up and a sample web app installed, now you can install a Spring
 Until the Recepter Client library is deployed, these extra steps are necessary ot pre-build this demo
 
 . Go to your root source folder (like `cd ~/src`)
-. `git clone git@github.com:spencergibb/receptor-client.git`
+. `git clone git@github.com:markfisher/receptor-client.git`
 . `cd receptor-client`
-. `git checkout idea-java6`
 . `./gradlew clean build install -x test`
 
 With this in place, proceed to the main steps:
