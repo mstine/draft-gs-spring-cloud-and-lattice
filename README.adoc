@@ -1,5 +1,5 @@
 ---
-tags: [lattice,spring cloud]
+tags: [lattice,spring cloud,docker]
 projects: [spring-cloud]
 ---
 :spring_version: current
@@ -91,7 +91,7 @@ Bonus commands to tinker with:
 * Visualize containers by typing `ltc visualize`
 * Crash the app and see it recover automatically by typing `lattice-app.192.168.11.11.xip.io/exit` into your browser's address bar.
 
-== Set up a Spring Cloud app
+== Building a Containerized Spring Cloud app for Lattice
 
 With Lattice set up and a sample web app installed, you can install a Spring Cloud module that interacts with that app.
 
@@ -106,7 +106,7 @@ Until the Recepter Client library is deployed to a maven repository, these extra
 
 === Main Steps
 
-NOTE: At this point in time, lattice requires docker images to be served from https://hub.docker.com. It means you have to register and in fact push your image there to deploy. If you happen to have a GitHub account, you can easily create a DockerHub account that matches.
+NOTE: At this point in time, lattice requires docker images to be served from https://hub.docker.com. It means you have to register and push your image there to deploy.
 
 . Go back to the folder that holds the lattice folder you recently cloned (like `cd ~/src`).
 . Clone Spring Cloud Lattice by typing `git clone git@github.com:spring-cloud/spring-cloud-lattice.git`
