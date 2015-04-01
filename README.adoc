@@ -37,10 +37,9 @@ Lattice is Cloud Foundry with certain features, not critical for a local install
 . Check out a copy of Lattice by typing `git clone https://github.com/cloudfoundry-incubator/lattice.git`
 . `cd lattice`
 . `git checkout v0.2.1`
-. `vagrant up --provider lattice`
+. `vagrant up --provider lattice` (this command MUST take place in this folder)
 . Go get a coffee. This will take some time as it downloads a Lattice Docker image into your VirtualBox setup.
 . When Lattice finishes this step, it should print out a target address like this: *192.168.11.11.xip.io*. Note it for later usage.
-
 
 NOTE: Vagrant also has support for other VMs like VMware Fusion. It requires not only a commercial copy of VMware Fusion, but a copy of the http://www.vagrantup.com/vmware[Vagrant/VMware Fusion plugin] as well.
 
@@ -94,7 +93,7 @@ Bonus commands to tinker with:
 
 == Set up a Spring Cloud app
 
-With Lattice set up and a sample web app installed, now you can install a Spring Cloud module that interacts with Lattice.
+With Lattice set up and a sample web app installed, you can install a Spring Cloud module that interacts with that app.
 
 === Temporary Pre-setup
 
@@ -107,12 +106,12 @@ Until the Recepter Client library is deployed to a maven repository, these extra
 
 === Main Steps
 
-NOTE: At this point in time, lattice requires docker images to be served from https://hub.docker.com. It means you have to register and in fact push your image there to deploy.
+NOTE: At this point in time, lattice requires docker images to be served from https://hub.docker.com. It means you have to register and in fact push your image there to deploy. If you happen to have a GitHub account, you can easily create a DockerHub account that matches.
 
 . Go back to the folder that holds the lattice folder you recently cloned (like `cd ~/src`).
 . Clone Spring Cloud Lattice by typing `git clone git@github.com:spring-cloud/spring-cloud-lattice.git`
 . `cd spring-cloud-lattice`
-. `mvn --settings .settings.xml package`
+. `mvn --settings .settings.xml install`
 . `cd spring-cloud-lattice-sample`
 . `mvn --settings ../.settings.xml clean package docker:build`
 . `docker tag spring-cloud-lattice-sample:latest <yourdockerhubid>/spring-cloud-lattice-sample`
