@@ -19,11 +19,10 @@ Lattice is a cloud solution small enough to run on your laptop. By giving up fea
 :java_version: 1.7
 :java_version: 1.7
 include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/prereq_editor_jdk_buildtools.adoc[]
-+
-* A docker setup as described in link:/guide/gs/spring-boot-docker
+
+NOTE: This guide also requires docker. For more details about getting started with Spring apps in Docker, see link:/guide/gs/spring-boot-docker[Spring Boot with Docker].
 
 include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/how_to_complete_this_guide.adoc[]
-
 
 
 [[initial]]
