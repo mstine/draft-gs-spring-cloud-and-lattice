@@ -108,6 +108,8 @@ Until the Recepter Client library is deployed to a maven repository, these extra
 
 === Main Steps
 
+NOTE: At this point in time, lattice requires docker images to be served from https://hub.docker.com. It means you have to register and in fact push your image there to deploy.
+
 . Go back to the folder that holds the lattice folder you recently cloned (like `cd ~/src`).
 . Clone Spring Cloud Lattice by typing `git clone git@github.com:spring-cloud/spring-cloud-lattice.git`
 . `cd spring-cloud-lattice`
@@ -119,8 +121,6 @@ Until the Recepter Client library is deployed to a maven repository, these extra
 . `LATTICE_CLI_TIMEOUT=180 ltc create spring-cloud-lattice-sample <yourdockerhubid>/spring-cloud-lattice-sample`
 . Visit http://spring-cloud-lattice-sample.192.168.11.11.xip.io?service=spring-cloud-lattice-sample and verify you can see the demo web app. Refresh the browser multiple times to see the *uri* attribute rotate.
 . Visit http://spring-cloud-lattice-sample.192.168.11.11.xip.io/me verify that the 3 services rotate through as you refresh.
-
-NOTE: Visit link:/gs/maven/ for more background regarding Apache Maven.
 
 
 == Summary
