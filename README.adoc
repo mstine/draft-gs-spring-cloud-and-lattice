@@ -19,6 +19,8 @@ Lattice is a cloud solution small enough to run on your laptop. By giving up fea
 :java_version: 1.7
 :java_version: 1.7
 include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/prereq_editor_jdk_buildtools.adoc[]
++
+* A docker setup as described in link:/guide/gs/spring-boot-docker
 
 include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/how_to_complete_this_guide.adoc[]
 
@@ -110,8 +112,13 @@ Until the Recepter Client library is deployed to a maven repository, these extra
 . Clone Spring Cloud Lattice by typing `git clone git@github.com:spring-cloud/spring-cloud-lattice.git`
 . `cd spring-cloud-lattice`
 . `mvn --settings .settings.xml package`
-. `java -jar spring-cloud-lattice-sample/target/spring-cloud-lattice-sample-1.0.0.BUILD-SNAPSHOT.jar`
-. Visit http://localhost:8080/?service=lattice-app and verify you can see the demo web app. Refresh the browser multiple times to see the *uri* attribute rotate.
+. `cd spring-cloud-lattice-sample`
+. `mvn --settings ../.settings.xml clean package docker:build`
+. `docker tag spring-cloud-lattice-sample:latest <yourdockerhubid>/spring-cloud-lattice-sample`
+. `docker push <yourdockerhubid>/spring-cloud-lattice-sample`
+. `LATTICE_CLI_TIMEOUT=180 ltc create spring-cloud-lattice-sample <yourdockerhubid>/spring-cloud-lattice-sample`
+. Visit http://spring-cloud-lattice-sample.192.168.11.11.xip.io?service=spring-cloud-lattice-sample and verify you can see the demo web app. Refresh the browser multiple times to see the *uri* attribute rotate.
+. Visit http://spring-cloud-lattice-sample.192.168.11.11.xip.io/me verify that the 3 services rotate through as you refresh.
 
 NOTE: Visit link:/gs/maven/ for more background regarding Apache Maven.
 
