@@ -12,7 +12,7 @@ This guide walks you through the process setting up http://lattice.cf[Lattice] a
 
 == What you'll build
 
-Lattice is a cloud solution small enough to run on your laptop. By giving up features like multi-tenancy, you can build cloud apps rapidly, and later target them for things like Pivotal CF. In this guide, you'll setup Lattice and then deploy a service to it.
+Lattice is a cloud solution small enough to run on your laptop. By giving up features like multi-tenancy, you can build cloud apps rapidly and later target them for things like Pivotal CF. In this guide, you'll setup Lattice and then deploy a service to it.
 
 == What you'll need
 
@@ -28,16 +28,16 @@ include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/
 [[initial]]
 == Set up Lattice
 
-Lattice is Cloud Foundry with certain features, not critical for a local installation, removed. The following http://lattice.cf/docs/getting-started.html[getting started] steps are all you need to get Lattice going:
+Lattice is Cloud Foundry with certain non-critical features removed. The following http://lattice.cf/docs/getting-started.html[getting started] steps are all you need to get Lattice going:
 
 . Visit https://www.virtualbox.org/wiki/Downloads[VirtualBox's download site] and pick the version for your machine. Download and install. Don't worry about actually running it.
 . Visit https://www.vagrantup.com/downloads.html[Vagrant's download site] and pick the version for your machine. Download and install.
 . You need http://git-scm.com/[git], the DVCS tool. Options include "brew install git" or visiting the http://git-scm.com/downloads[download page]. After installing, verify you can run "git" from the command line.
-. Create a folder to check out Lattice, e.g. `cd ~/src`
+. Create a folder to check out Lattice, e.g. `mkdir ~/src && cd ~/src`
 . Check out a copy of Lattice by typing `git clone https://github.com/cloudfoundry-incubator/lattice.git`
 . `cd lattice`
 . `git checkout v0.2.1`
-. `vagrant up --provider lattice` (this command MUST take place in this folder)
+. `vagrant up --provider virtualbox` (this command MUST take place in this folder)
 . Go get a coffee. This will take some time as it downloads a Lattice Docker image into your VirtualBox setup.
 . When Lattice finishes this step, it should print out a target address like this: *192.168.11.11.xip.io*. Note it for later usage.
 
@@ -50,7 +50,7 @@ With Lattice installed and running, you now need a copy of the Lattice CLI (ltc)
 Using Mac Homebrew? Try this:
 
 . `wget https://lattice.s3.amazonaws.com/releases/v0.2.1/darwin-amd64/ltc -O /usr/local/bin/ltc`
-. ` chmod 755 /usr/local/bin/ltc`
+. `chmod 755 /usr/local/bin/ltc`
 
 If not, try this instead:
 
@@ -65,7 +65,7 @@ Verify *ltc* is setup with this:
 $ ltc --version
 ----
 
-== Building a Containerized Spring Cloud app for Lattice
+== Build a Containerized Spring Cloud app for Lattice
 
 With Lattice set up, you will build and install a Spring Cloud sample application.
 
