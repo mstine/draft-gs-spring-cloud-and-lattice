@@ -65,35 +65,9 @@ Verify *ltc* is setup with this:
 $ ltc --version
 ----
 
-== Install demo web app in Lattice
-
-With everything setup, the Lattice team has a sample app ready to deploy into your own cloud.
-
-. Point ltc at your Lattice setup by typing: `ltc target <lattice address>`
-. Install the demo web app by typing: `ltc create lattice-app cloudfoundry/lattice-app`
-* Scale the web app up to three instances by typing: `ltc scale 3`
-
-NOTE: *lattice-app* can be anything you wish. *cloudfoundry/lattice-app* is the name of the sample web app published to a Docker registry.
-
-You should see something like this:
-
-----
-Starting App: lattice-app...
-lattice-app is now running.
-http://lattice-app.192.168.11.11.xip.io
-----
-
-Bonus commands to tinker with:
-
-* Tail the logs by typing `ltc logs lattice-app`
-* See all apps deployed on your Lattice by typing `ltc list`
-* See status by typing `ltc status lattice-app`
-* Visualize containers by typing `ltc visualize`
-* Crash the app and see it recover automatically by typing `lattice-app.192.168.11.11.xip.io/exit` into your browser's address bar.
-
 == Building a Containerized Spring Cloud app for Lattice
 
-With Lattice set up and a sample web app installed, you can install a Spring Cloud module that interacts with that app.
+With Lattice set up, you will build and install a Spring Cloud sample application.
 
 === Temporary Pre-setup
 
@@ -116,14 +90,26 @@ NOTE: At this point in time, lattice requires docker images to be served from ht
 . `mvn --settings ../.settings.xml clean package docker:build`
 . `docker tag spring-cloud-lattice-sample:latest <yourdockerhubid>/spring-cloud-lattice-sample`
 . `docker push <yourdockerhubid>/spring-cloud-lattice-sample`
-. `LATTICE_CLI_TIMEOUT=180 ltc create spring-cloud-lattice-sample <yourdockerhubid>/spring-cloud-lattice-sample`
+
+With everything built, you can now deploy this sample app to your lattice installation.
+
+. Point ltc at your Lattice setup by typing: `ltc target <lattice address>`
+. `LATTICE_CLI_TIMEOUT=180 ltc create spring-cloud-lattice-sample <yourdockerhubid>/spring-cloud-lattice-sample --memory-mb=0` (*0* means no memory limits. See http://lattice.cf/docs/ltc/ for more details.)
+. Scale the app to three instances by typgin `ltc scale spring-cloud-lattice-sample 3`
 . Visit http://spring-cloud-lattice-sample.192.168.11.11.xip.io?service=spring-cloud-lattice-sample and verify you can see the demo web app. Refresh the browser multiple times to see the *uri* attribute rotate.
 . Visit http://spring-cloud-lattice-sample.192.168.11.11.xip.io/me verify that the 3 services rotate through as you refresh.
 
+Bonus commands to tinker with:
+
+* Tail the logs by typing `ltc logs spring-cloud-lattice-sample`
+* See all apps deployed on your Lattice by typing `ltc list`
+* See status by typing `ltc status spring-cloud-lattice-sample`
+* Visualize containers by typing `ltc visualize`
+* Crash the app by typing `http://spring-cloud-lattice-sample.192.168.11.11.xip.io/exit` into your browser's address bar. The watch it automatically recover by revisiting it shortly thereafter.
 
 == Summary
 
-Congratulations! You've just setup the lightweight Lattice container on your machine and ran a Spring Cloud app on it!
+Congratulations! You have setup the lightweight Lattice container on your machine and ran a Spring Cloud app on it!
 
 
 
