@@ -95,9 +95,9 @@ With everything built, you can now deploy this sample app to your lattice instal
 
 . Point ltc at your Lattice setup by typing: `ltc target <lattice address>`
 . `LATTICE_CLI_TIMEOUT=180 ltc create spring-cloud-lattice-sample <yourdockerhubid>/spring-cloud-lattice-sample --memory-mb=0` (*0* means no memory limits. See http://lattice.cf/docs/ltc/ for more details.)
-. Scale the app to three instances by typgin `ltc scale spring-cloud-lattice-sample 3`
-. Visit http://spring-cloud-lattice-sample.192.168.11.11.xip.io?service=spring-cloud-lattice-sample and verify you can see the demo web app. Refresh the browser multiple times to see the *uri* attribute rotate.
-. Visit http://spring-cloud-lattice-sample.192.168.11.11.xip.io/me verify that the 3 services rotate through as you refresh.
+. Scale the app to three instances by typing `ltc scale spring-cloud-lattice-sample 3`
+. Visit http://spring-cloud-lattice-sample.192.168.11.11.xip.io?service=spring-cloud-lattice-sample and verify you can see the JSON service record. Refresh the browser multiple times notice how the *uri* attribute rotates.
+. Visit http://spring-cloud-lattice-sample.192.168.11.11.xip.io/me and see a pared down record that also rotates the *uri*.
 
 Bonus commands to tinker with:
 
