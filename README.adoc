@@ -12,7 +12,14 @@ This guide walks you through the process setting up http://lattice.cf[Lattice] a
 
 == What you'll build
 
-Lattice is a cloud solution small enough to run on your laptop. By giving up features like multi-tenancy, you can build cloud apps rapidly and later target them for things like Pivotal CF. In this guide, you'll setup Lattice and then deploy a service to it.
+http://lattice.cf/[Lattice] is a cloud-native application platform that enables you to run your applications in containers using solutions like http://docker.com[Docker].
+Lattice includes features like cluster scheduling, http load balancing, log aggregation and health management.
+Lattice does this by packaging a subset of the components found in the Cloud Foundry elastic runtime.
+The result is an open, single-tenant environment suitable for rapid application development.
+Applications developed using Lattice should migrate unchanged to full Cloud Foundry deployments.
+
+In this guide you'll deploy a sample application that demonstrates http://microservices.io/patterns/client-side-discovery.html[service discovery].
+The application leverages http://cloud.spring.io[Spring Cloud] to discover and display metadata about horizontally-scaled instances of itself via Lattice's API.
 
 == What you'll need
 
@@ -28,7 +35,7 @@ include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/
 [[initial]]
 == Set up Lattice
 
-Lattice is Cloud Foundry with certain non-critical features removed. The following http://lattice.cf/docs/getting-started.html[getting started] steps are all you need to get Lattice going:
+The following http://lattice.cf/docs/getting-started.html[getting started] steps are all you need to get Lattice going:
 
 . Visit https://www.virtualbox.org/wiki/Downloads[VirtualBox's download site] and pick the version for your machine. Download and install. Don't worry about actually running it.
 . Visit https://www.vagrantup.com/downloads.html[Vagrant's download site] and pick the version for your machine. Download and install.
@@ -71,7 +78,7 @@ With Lattice set up, you will build and install a Spring Cloud sample applicatio
 
 === Temporary Pre-setup
 
-Until the Recepter Client library is deployed to a maven repository, these extra steps are necessary:
+Until the Receptor Client library is deployed to a maven repository, these extra steps are necessary:
 
 . Go to your root source folder (like `cd ~/src`)
 . `git clone git@github.com:markfisher/receptor-client.git`
@@ -109,8 +116,4 @@ Bonus commands to tinker with:
 
 == Summary
 
-Congratulations! You have setup the lightweight Lattice container on your machine and ran a Spring Cloud app on it!
-
-
-
-
+Congratulations! You have setup the lightweight Lattice platform on your machine and ran a Spring Cloud app on it!
